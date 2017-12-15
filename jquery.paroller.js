@@ -16,7 +16,7 @@
 	}
 	// 
 	else 
-    {
+	{
 		factory( window.Zepto || window.jQuery || window.$ );
 	}
 } )( function( $ ) 
