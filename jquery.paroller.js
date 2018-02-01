@@ -31,38 +31,6 @@
 	};
 	
 	//
-	var setDirection = 
-	{
-		bgVertical: function( elem, bgOffset ) 
-		{
-			return elem.css( { 'background-position': 'center ' + -bgOffset + 'px' } );
-		},
-		
-		bgHorizontal: function( elem, bgOffset ) 
-		{
-			return elem.css( { 'background-position': -bgOffset + 'px' + ' center' } );
-		},
-		
-		vertical: function( elem, elemOffset )
-		{
-			return elem.css( {
-				'-webkit-transform': 'translateY(' + elemOffset + 'px)',
-				'-moz-transform': 'translateY(' + elemOffset + 'px)',
-				'transform': 'translateY(' + elemOffset + 'px)'
-			} );
-		},
-		
-		horizontal: function( elem, elemOffset ) 
-		{
-			return elem.css( {
-				'-webkit-transform': 'translateX(' + elemOffset + 'px)',
-				'-moz-transform': 'translateX(' + elemOffset + 'px)',
-				'transform': 'translateX(' + elemOffset + 'px)'
-			} );
-		}
-	};
-	
-	//
 	function Plugin( element, options )
 	{
 		this.element = element;
@@ -144,7 +112,9 @@
 			return this.$element.css( {
 				'-webkit-transform': 'translateY(' + offset + 'px)',
 				'-moz-transform': 'translateY(' + offset + 'px)',
-				'transform': 'translateY(' + offset + 'px)'
+				'transform': 'translateY(' + offset + 'px)',
+                		'transition': 'transform linear',
+                		'will-change': 'transform'
 			} );
 		},
 		
@@ -153,14 +123,16 @@
 			return this.$element.css( {
 				'-webkit-transform': 'translateX(' + offset + 'px)',
 				'-moz-transform': 'translateX(' + offset + 'px)',
-				'transform': 'translateX(' + offset + 'px)'
+				'transform': 'translateX(' + offset + 'px)',
+                		'transition': 'transform linear',
+                		'will-change': 'transform'
 			} );
 		},
 		
 		destroy: function( reinitialize )
 		{
 			// Not remove data in reinit
-			if( !reinitialize )	{ this.$element.removeData( '_paroller' ); }
+			if( !reinitialize ) { this.$element.removeData( '_paroller' ); }
 			
 			this.$element.off( '.paroller' );
 		},
